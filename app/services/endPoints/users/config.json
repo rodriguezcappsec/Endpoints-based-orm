@@ -1,8 +1,28 @@
 {
-    "users": {
-        "get_user": "/api/v1/users",
-        "post_user": "/api/v1/users",
-        "patch_user": "/api/v1/users/:id",
-        "get_user_by": "/api/v1/users/:id/"
+
+    "all": {
+        "url": "/api/v1/users",
+        "type": "get",
+        "params": []
+    },
+    "create": {
+        "url": "/api/v1/users",
+        "type": "post",
+        "params": [],
+        "body": {
+            "firstName": "",
+            "lastName": "",
+            "email": ""
+        }
+    },
+    "update": {
+        "url": "/api/v1/users/",
+        "type": "patch",
+        "params": ["id"]
+    },
+    "find": {
+        "url": "/api/v1/users/",
+        "type": "get",
+        "params": ["id"]
     }
 }

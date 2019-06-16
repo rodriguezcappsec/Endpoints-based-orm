@@ -1,8 +1,0 @@
-{
-    "comments": {
-        "get_user": "/api/v1/users",
-        "post_user": "/api/v1/users",
-        "patch_user": "/api/v1/users/:id",
-        "get_user_by": "/api/v1/users/:id/"
-    }
-}
