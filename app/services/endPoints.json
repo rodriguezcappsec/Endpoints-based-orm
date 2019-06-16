@@ -1,6 +1,0 @@
-{
-    "users": {
-        "getUsers": "/api/v1/users",
-        "getUser": "/api/v1/users/:id"
-    }
-}

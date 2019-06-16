@@ -3,8 +3,6 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 
-const bodyParser = require("body-parser");
-
 //require routes
 const userRoutes = require("./app/routes/userRoutes.js")
 //here
@@ -13,7 +11,7 @@ const userRoutes = require("./app/routes/userRoutes.js")
 //Database conection "MongoDB"
 mongoose
     .connect(
-        "mongodb://localhost:27017/Church-On-Time",
+        "mongodb://localhost:27017/end-point-orm-test",
         { useNewUrlParser: true, useCreateIndex: true }
     )
     .then(() => console.log("connected to mongodb"))
@@ -21,14 +19,9 @@ mongoose
 //------------------------------------------------------------
 
 //Middlewares
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:3000" })); // client server
 app.use(express.json());
 //-------------------------------------------------------------------------------
-
 //Routes use
 app.use(userRoutes)
 //here
@@ -38,5 +31,8 @@ app.use(userRoutes)
 //----------------------
 //Server start
 const port = process.env.PORT || 4741;
-app.listen(port, () => console.log(`Running on port ${port}`));
+app.listen(port, () => {
+    console.log(`Running on port ${port}`)
+    
+});
 //-------------------------------------------------------------
