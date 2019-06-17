@@ -6,11 +6,14 @@ let endPoints = configs.map(config =>
   eval(`(${fs.readFileSync("./app/services/endPoints/" + "/" + config)})`)
 );
 let evalFunctions = [];
-endPoints.forEach(element => {
 
+let find =() =>{
+  
+}
+
+endPoints.forEach(element => {
   const host = require("./config.json").host;
   for (const key in element) {
-
     evalFunctions.push(`
       function ${key}(){
         const http = require("http");

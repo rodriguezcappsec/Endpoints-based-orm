@@ -4,5 +4,10 @@
         "url": "/api/v1/users",
         "type": "get",
         "params": []
+    },
+    "find": {
+        "url": "/api/v1/users/",
+        "type": "get",
+        "params": ["id"]
     }
 }
