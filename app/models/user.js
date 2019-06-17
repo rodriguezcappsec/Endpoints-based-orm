@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+//FOR TESTING PURPOSES.
 const userSchema = new mongoose.Schema(
     {
         firstName: {

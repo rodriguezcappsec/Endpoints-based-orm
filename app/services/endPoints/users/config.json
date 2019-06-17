@@ -5,21 +5,6 @@
         "type": "get",
         "params": []
     },
-    "create": {
-        "url": "/api/v1/users",
-        "type": "post",
-        "params": [],
-        "body": {
-            "firstName": "",
-            "lastName": "",
-            "email": ""
-        }
-    },
-    "update": {
-        "url": "/api/v1/users/",
-        "type": "patch",
-        "params": ["id"]
-    },
     "find": {
         "url": "/api/v1/users/",
         "type": "get",
