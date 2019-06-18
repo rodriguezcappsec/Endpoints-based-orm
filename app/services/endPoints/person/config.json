@@ -1,6 +1,6 @@
 {
    
-    "find": {
+    "findPerson": {
         "url": "/api/v1/users",
         "type": "get",
         "params": ["id"],

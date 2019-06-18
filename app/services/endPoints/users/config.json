@@ -1,9 +1,9 @@
 {
    
-    "findPerson": {
+    "find": {
         "url": "/api/v1/users",
         "type": "get",
-        "params": [],
+        "params": ["id"],
         "authorization": "bearer",
         "objectName":"User"
     }
