@@ -3,7 +3,7 @@
 ## Client example:
 
 ```javascript
-let socket = io.connect("http://localhost:4741");
+let socket = io.connect("server url");
 socket.on("orm.js", data => {
   eval(data.apiOrm);
   console.log(data.functionNames)
