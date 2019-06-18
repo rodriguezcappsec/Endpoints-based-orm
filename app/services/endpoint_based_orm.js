@@ -1,26 +1,26 @@
-const getFiles = require("./directoriesRecursion.js");
-const socket = require("socket.io");
-const host = require("./config.json").host;
-var fs = require("fs");
-const axios = require("axios");
+let ormEndPoints = (endPointFoldersPath, server, host) => {
+  const socket = require("socket.io");
+  const getFiles = require("./directoriesRecursion.js");
+  var fs = require("fs");
+  
+  let configs = getFiles(endPointFoldersPath);
+  let endPoints = configs.map(config =>
+    JSON.parse(`${fs.readFileSync(endPointFoldersPath + "/" + config)}`)
+  );
 
-let configs = getFiles("./app/services/endPoints");
-let endPoints = configs.map(config =>
-  JSON.parse(`${fs.readFileSync("./app/services/endPoints/" + "/" + config)}`)
-);
-let evalFunctions = [];
-evalFunctions.push(
-  `
+  let evalFunctions = [];
+  evalFunctions.push(
+    `
   function getParams(paramsArr){
   let params = "";
   paramsArr.forEach(param => (params += "/"+param));
   return params;
 };
 `
-);
+  );
 
-evalFunctions.push(
-  `async function optionsConditions(element, options, host){
+  evalFunctions.push(
+    `async function optionsConditions(element, options, host){
   if (element.params.length > 0 && element.type == "get") {
     let params = getParams(options.params);
     let authType= element.authorization =="bearer" ? "Bearer " : "Token token=";
@@ -37,30 +37,29 @@ evalFunctions.push(
   }
 }
 `
-);
-let functionsNames = [];
-endPoints.forEach(element => {
-  for (const key in element) {
-    functionsNames.push(key);
-    evalFunctions.push(
-      `
+  );
+  let functionsNames = [];
+  endPoints.forEach(element => {
+    for (const key in element) {
+      functionsNames.push(key);
+      evalFunctions.push(
+        `
       function ${key}(options={}){
         return optionsConditions(` +
-        JSON.stringify(element[key]) +
-        ",options," +
-        `'${host}'` +
-        `)
+          JSON.stringify(element[key]) +
+          ",options," +
+          `'${host}'` +
+          `)
       }`
-    );
-  }
-});
-//testing it with all
-let evalFuncs;
-evalFunctions.forEach(functions => {
-  evalFuncs += functions;
-});
+      );
+    }
+  });
+  //testing it with all
+  let evalFuncs;
+  evalFunctions.forEach(functions => {
+    evalFuncs += functions;
+  });
 
-let socketOrmEndPoint = server => {
   let io = socket(server);
 
   io.on("connection", socket => {
@@ -71,4 +70,4 @@ let socketOrmEndPoint = server => {
   });
 };
 
-module.exports = socketOrmEndPoint;
+module.exports = ormEndPoints;

@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
-const socketOrmEndPoint = require("./app/services/endpoint_based_orm.js");
+const ormEndPoints = require("./app/services/endpoint_based_orm.js");
 
 //require routes
 const userRoutes = require("./app/routes/userRoutes.js");
@@ -35,5 +35,4 @@ const server = app.listen(port, () => {
   console.log(`Running on port ${port}`);
 });
 //-------------------------------------------------------------
-
-socketOrmEndPoint(server);
+ormEndPoints("./app/services/endPoints", server, "http://localhost:4741");
