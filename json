@@ -1,4 +1,9 @@
-,
+ "all": {
+        "url": "/api/v1/users",
+        "type": "get",
+        "params": [],
+        "authorization": ""
+    },
     "create": {
         "url": "/api/v1/users",
         "type": "post",
@@ -7,15 +12,12 @@
             "firstName": "",
             "lastName": "",
             "email": ""
-        }
+        },
+        "authorization": "bearer"
     },
     "update": {
         "url": "/api/v1/users/",
         "type": "patch",
-        "params": ["id"]
+        "params": ["id"],
+        "authorization": "bearer"
     },
-    "find": {
-        "url": "/api/v1/users/",
-        "type": "get",
-        "params": ["id"]
-    }
