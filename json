@@ -4,20 +4,23 @@
         "params": [],
         "authorization": ""
     },
+    ,
     "create": {
         "url": "/api/v1/users",
         "type": "post",
-        "params": [],
         "body": {
             "firstName": "",
             "lastName": "",
             "email": ""
         },
         "authorization": "bearer"
-    },
+    }
     "update": {
         "url": "/api/v1/users/",
         "type": "patch",
         "params": ["id"],
-        "authorization": "bearer"
+        "authorization": "bearer",
+        "body": {
+            "firstName": "",
+        }
     },

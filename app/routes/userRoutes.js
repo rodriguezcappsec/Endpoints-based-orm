@@ -15,13 +15,14 @@ function authToken(req, res, next) {
   }
 }
 //FOR TESTING PURPOSES.
-router.post("/api/v1/users", async (req, res) => {
-  await User.create({
-    firstName: "el tipo",
-    lastName: "klklklk",
-    email: "JohnJohni@example.com"
-  });
-  res.send(await User.find());
+router.post("/api/v1/users",authToken,async (req, res) => {
+  res.send(req.body);
+  // await User.create({
+  //   firstName: "el tipo",
+  //   lastName: "klklklk",
+  //   email: "JohnJohni@example.com"
+  // });
+  // res.send(await User.find());
 });
 
 router.get("/api/v1/users", async (req, res) => {

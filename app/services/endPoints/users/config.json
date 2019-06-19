@@ -1,10 +1,20 @@
 {
-   
+
     "find": {
         "url": "/api/v1/users",
-        "type": "get",
+        "method": "get",
         "params": ["id"],
         "authorization": "bearer",
-        "objectName":"User"
+        "objectName": "User"
+    },
+    "create": {
+        "url": "/api/v1/users",
+        "method": "post",
+        "body": {
+            "firstName": "",
+            "lastName": "",
+            "email": ""
+        },
+        "authorization": "bearer"
     }
 }
