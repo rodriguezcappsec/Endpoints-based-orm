@@ -38,8 +38,12 @@ let ormEndPoints = (endPointFoldersPath, server, host) => {
         }
       };
       if (element.authorization) {
-        authType =
-          element.authorization == "bearer" ? headers.bearer : headers.auth2;
+        if (options.token && options.token != "") {
+          authType =
+            element.authorization == "bearer" ? headers.bearer : headers.auth2;
+        } else {
+          authType = "";
+        }
       } else {
         authType = "";
       }
@@ -65,6 +69,7 @@ let ormEndPoints = (endPointFoldersPath, server, host) => {
       );
       return data.data;
     }
+    
     `
   );
 
