@@ -20,7 +20,7 @@ mongoose
 //------------------------------------------------------------
 
 //Middlewares
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://127.0.0.1:5500" })); // client server
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || ["http://127.0.0.1:5500", "http://localhost:3000"] })); // client server
 app.use(express.json());
 //-------------------------------------------------------------------------------
 //Routes use

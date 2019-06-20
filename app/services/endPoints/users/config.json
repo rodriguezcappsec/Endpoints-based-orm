@@ -1,5 +1,8 @@
 {
-
+    "all": {
+        "url": "/api/v1/users",
+        "method": "get"
+    },
     "find": {
         "url": "/api/v1/users",
         "method": "get",
@@ -16,5 +19,14 @@
             "email": ""
         },
         "authorization": "bearer"
+    },
+    "update": {
+        "url": "/api/v1/users",
+        "method": "patch",
+        "params": ["id"],
+        "authorization": "bearer",
+        "body": {
+            "firstName": ""
+        }
     }
 }

@@ -49,20 +49,32 @@ let ormEndPoints = (endPointFoldersPath, server, host) => {
       }
       async function initAxios(options = {}, verb) {
         if (verb == "get") {
-          return await axios.get(options.url, options.authentication);
+          let autho = options.authorization!= undefined ? options.authorization : "";
+          return await axios.get(options.url, autho);
         }
         if (verb == "post") {
           return await axios.post(
             options.url,
             options.body,
-            options.authentication
+            options.authorization
           );
+        }
+        if (verb == "patch" || verb == "put") {
+          return await axios({
+            method: verb,
+            url: options.url,
+            data: options.body,
+            headers: options.authorization.headers
+          });
+        }
+        if (verb == "delete") {
+          return await axios.delete(options.url);
         }
       }
       let data = await initAxios(
         {
           url: host + element.url + params,
-          authentication: authType,
+          authorization: authType,
           body: body
         },
         element.method
@@ -72,25 +84,6 @@ let ormEndPoints = (endPointFoldersPath, server, host) => {
     
     `
   );
-
-  // evalFunctions.push(
-  //   `async function optionsConditions(element, options, host) {
-  //     if (element.params.length > 0 && element.type == "get") {
-  //       let params = getParams(options.params);
-  //       if(element.authorization){
-  //         console.log(element.authorization)
-  //       }
-  //       let authType = element.authorization == "bearer" ? "Bearer " : "Token token=";
-  //       let data = await axios.get(host + element.url + params, {
-  //         headers: {
-  //           Authorization: authType + options.token
-  //         }
-  //       });
-  //       return data.data;
-  //     }
-  //   }
-  // `
-  // );
 
   let functionsNames = [];
   endPoints.forEach(element => {
