@@ -1,0 +1,26 @@
+ "all": {
+        "url": "/api/v1/users",
+        "type": "get",
+        "params": [],
+        "authorization": ""
+    },
+    ,
+    "create": {
+        "url": "/api/v1/users",
+        "type": "post",
+        "body": {
+            "firstName": "",
+            "lastName": "",
+            "email": ""
+        },
+        "authorization": "bearer"
+    }
+    "update": {
+        "url": "/api/v1/users/",
+        "type": "patch",
+        "params": ["id"],
+        "authorization": "bearer",
+        "body": {
+            "firstName": "",
+        }
+    },

@@ -1,16 +1,13 @@
 {
-    "all": {
-        "url": "/api/v1/users",
-        "method": "get"
-    },
-    "find": {
+
+    "personFind": {
         "url": "/api/v1/users",
         "method": "get",
         "params": ["id"],
         "authorization": "bearer",
         "objectName": "User"
     },
-    "create": {
+    "personCreate": {
         "url": "/api/v1/users",
         "method": "post",
         "body": {
@@ -19,14 +16,5 @@
             "email": ""
         },
         "authorization": "bearer"
-    },
-    "update": {
-        "url": "/api/v1/users",
-        "method": "patch",
-        "params": ["id"],
-        "authorization": "bearer",
-        "body": {
-            "firstName": ""
-        }
     }
 }
