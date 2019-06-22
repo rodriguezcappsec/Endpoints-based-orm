@@ -20,7 +20,9 @@ mongoose
 //------------------------------------------------------------
 
 //Middlewares
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || ["http://127.0.0.1:5500", "http://localhost:3000"] })); // client server
+app.use(cors({
+  origin: process.env.CLIENT_ORIGIN || ["http://127.0.0.1:5500", "http://localhost:3000"]
+})); // client server
 app.use(express.json());
 //-------------------------------------------------------------------------------
 //Routes use
@@ -35,4 +37,8 @@ const server = app.listen(port, () => {
   console.log(`Running on port ${port}`);
 });
 //-------------------------------------------------------------
-ormEndPoints("./app/services/endPoints", server, "http://localhost:4741");
+ormEndPoints({
+  endPointFoldersPath: "./app/services/endPoints",
+  server: server,
+  host: "http://localhost:4741"
+});

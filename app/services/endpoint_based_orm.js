@@ -1,11 +1,11 @@
-let ormEndPoints = (endPointFoldersPath, server, host) => {
+let ormEndPoints = (setup = {}) => {
   const socket = require("socket.io");
   const getFiles = require("./directoriesRecursion.js");
   var fs = require("fs");
 
-  let configs = getFiles(endPointFoldersPath);
+  let configs = getFiles(setup.endPointFoldersPath);
   let endPoints = configs.map(config =>
-    JSON.parse(`${fs.readFileSync(endPointFoldersPath + "/" + config)}`)
+    JSON.parse(`${fs.readFileSync(setup.endPointFoldersPath + "/" + config)}`)
   );
 
   let evalFunctions = [];
@@ -93,10 +93,10 @@ let ormEndPoints = (endPointFoldersPath, server, host) => {
         `
       function ${key}(options={}){
         return optionsConditions(` +
-          JSON.stringify(element[key]) +
-          ",options," +
-          `'${host}'` +
-          `)
+        JSON.stringify(element[key]) +
+        ",options," +
+        `'${setup.host}'` +
+        `)
       }`
       );
     }
@@ -107,10 +107,10 @@ let ormEndPoints = (endPointFoldersPath, server, host) => {
     evalFuncs += functions;
   });
 
-  let io = socket(server);
+  let io = socket(setup.server);
 
   io.on("connection", socket => {
-    socket.emit("orm.js", {
+    socket.emit(setup.socketName || "orm.js", {
       apiOrm: evalFuncs,
       functionNames: functionsNames
     });
